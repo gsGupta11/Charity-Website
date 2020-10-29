@@ -5,9 +5,6 @@
      html,body {
           background-color: RGB(52, 73, 94);
         }
-        .hide{
-          display:none;
-        }
         #check{
           border-radius:5px;
           padding:5px;
@@ -63,10 +60,21 @@
                 $result=mysqli_query($link, $query);
               }
                       $total = 0;
+                      $v=0;
                       while($row=mysqli_fetch_array($result)){
                         if($_SESSION['user1']==$row['d_name'])
                         {
-                        $total += $row['d_amount'];
+                          $total += $row['d_amount'];
+                          $dname = $row['d_name'];
+                          $amount=$row['d_amount'];
+                          $pur = $row['d_purpose'];
+                          $addr = $row['d_addr'];
+                          $cell=$row['d_cell'];
+                          $date=$row['d_date'];
+                          $pay=$row['d_pay'];
+                          $paytype=$row['d_paytype'];  
+                          $sub="submit";
+                          $v+=1;
                        ?>
                                <tr>
                                        <td><?php echo $row['d_name']?></td>
@@ -77,12 +85,22 @@
                                        <td><?php echo $row['d_date']?></td>
                                        <td><?php echo $row['d_pay']?></td>
                                        <td><?php echo $row['d_paytype']?></td>
-                                       <form class="Form" method="POST" action="invoice.php">
-                                          <input type="text" class="hide" id="cust" name="customerid" placeholder="Enter Customer Id..">
-                                          <input type="text" id="comp" class="hide" name="comptype" placeholder="Enter Complaint Type..">
-                                          <textarea id="des" class="hide" name="description" placeholder="Describe your problem.."></textarea>
-                                          <td><?php echo '<button type="submit" name="submit" id="check" class="Submit">Download</button>'?></td>
-                                        </form>
+                                    <?php
+                                      echo "<td>";
+                                      echo '<form class="Form" method="POST" action="./invoice.php">';
+                                            echo "<input type=\"text\" name='dname' value='$dname' style=\"display:none;\">";
+                                            echo "<input type=\"text\" name='amount' value='$amount' style=\"display:none;\">";
+                                            echo "<input type=\"text\" name='pur' value='$pur' style=\"display:none;\">";
+                                            echo "<input type=\"text\" name='addr' value='$addr' style=\"display:none;\">";
+                                            echo "<input type=\"text\" name='cell' value='$cell' style=\"display:none;\">";
+                                            echo "<input type=\"text\" name='date' value='$date' style=\"display:none;\">";
+                                            echo "<input type=\"text\" name='pay' value='$pay' style=\"display:none;\">";
+                                            echo "<input type=\"text\" name=\"paytype\" value='$paytype' style=\"display:none;\">";
+                                      
+                                            echo "<button type=\"submit\" name='$sub' id=\"check\" class=\"Submit\">Download</button>";                                            
+                                            echo "</form>";
+                                            echo "</td>";
+                                        ?>
                                </tr>
                            <?php
                            }
