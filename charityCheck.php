@@ -1,6 +1,6 @@
 <?php
 require_once "connect.php";
-if($_POST['fileToUpload']!=NULL)
+if($_POST['fileToUpload']==NULL)
 {
   $target_dir = "chars/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
