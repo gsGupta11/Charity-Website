@@ -3,7 +3,7 @@ session_start();
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
-$db = 'Charity';
+$db = 'charity';
 $link = mysqli_connect("$hostname", "$username", "$password", "$db");
 
 date_default_timezone_set('Asia/Kolkata');

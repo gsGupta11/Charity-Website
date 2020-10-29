@@ -5,6 +5,16 @@
      html,body {
           background-color: RGB(52, 73, 94);
         }
+        .hide{
+          display:none;
+        }
+        #check{
+          border-radius:5px;
+          padding:5px;
+          color: #333;
+          box-shadow: -3px 3px blue, -2px 2px blue, -1px 1px blue;
+          border: 1px solid blue;
+        }
 </style>
 
          <div style="margin-left: 60px;" class="col-md-11 content">
@@ -32,6 +42,7 @@
                      <th>Date</th>
                      <th>Payment Status</th>
                      <th>Payment Type</th>
+                     <th>Download Invoice</th>
                    </tr>
                  </thead>
                </thead>
@@ -66,6 +77,12 @@
                                        <td><?php echo $row['d_date']?></td>
                                        <td><?php echo $row['d_pay']?></td>
                                        <td><?php echo $row['d_paytype']?></td>
+                                       <form class="Form" method="POST" action="invoice.php">
+                                          <input type="text" class="hide" id="cust" name="customerid" placeholder="Enter Customer Id..">
+                                          <input type="text" id="comp" class="hide" name="comptype" placeholder="Enter Complaint Type..">
+                                          <textarea id="des" class="hide" name="description" placeholder="Describe your problem.."></textarea>
+                                          <td><?php echo '<button type="submit" name="submit" id="check" class="Submit">Download</button>'?></td>
+                                        </form>
                                </tr>
                            <?php
                            }

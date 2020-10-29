@@ -1,4 +1,4 @@
-<?php
+p<?php
 require_once "nologinheader1.php";
 if(isset($_POST['char']))
 {
